@@ -25,7 +25,7 @@ object KafkaWordCount {
   def main(args: Array[String]): Unit = {
     val Array(zkQuorum,group,topics,numThreads) = args
     val conf = new SparkConf().setAppName("KafkaCount")
-    val sc = new SparkContext(sc)
+    val sc = new SparkContext(conf)
     val ssc = new StreamingContext(sc,Seconds(5))
 //    val ssc = SparkSession.builder().getOrCreate() //有问题
     val topicMap = topics.split(",").map((_,numThreads.toInt)).toMap
